@@ -1,0 +1,367 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-12 09:13+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: uz\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: papers/forms.py:6
+msgid "Введите ID статьи (например, 2506.08872)"
+msgstr "Maqola ID'sini kiriting (masalan, 2506.08872)"
+
+msgid "ID статьи"
+msgstr "Maqola ID'si"
+
+msgid "Find an Article"
+msgstr "Maqolani izlash"
+
+msgid "Describe the article you want"
+msgstr "Sizga kerakli maqolani tavsiflang"
+
+msgid "E.g., Articles about Artificial General Intelligence (AGI)"
+msgstr "Masalan, Sun’iy umumiy intellekt haqidagi maqolalar"
+
+#: papers/forms.py:9
+msgid "Например, 2506.08872"
+msgstr "Masalan, 2506.08872"
+
+msgid "Search Instructions"
+msgstr "Qidiruv ko‘rsatmalari"
+
+msgid "Describe the topic in detail for accurate results. E.g., instead of 'Reinforcement Learning', write 'Uncertainty Prioritized Experience Replay for dynamic environments'."
+msgstr "Aniq natijalar olish uchun mavzuni batafsil tavsiflang. Masalan, ’Reinforcement Learning’ o‘rniga ’Uncertainty Prioritized Experience Replay for dynamic environments'."
+
+msgid "Use specific keywords that reflect the problem, methodology, or context of the article you’re searching for."
+msgstr "Qidirilayotgan maqolaning muammosi, metodologiyasi yoki kontekstini aks ettiruvchi maxsus kalit so‘zlardan foydalaning."
+
+msgid "If you want to limit the search to a category (e.g., computer science), include it in the description."
+msgstr "Agar qidiruvni turkum bilan cheklamoqchi bo‘lsangiz (masalan, informatika), uni tavsifga kiriting."
+
+msgid "Use clear and specific terms, avoiding vague words, to improve result relevance."
+msgstr "Natijaning dolzarbligini oshirish uchun noaniq so‘zlardan qochib, aniq va ravshan atamalardan foydalaning."
+
+msgid "Не удалось найти статью с ID {paper_id} на {repository}."
+msgstr "{repository} ID {paper_id} uchun maqola topilmadi"
+
+msgid "Вы загрузили статью:"
+msgstr "Quyidagi maqola yuklandi:"
+
+msgid "Теперь вы можете суммировать её или задать вопросы."
+msgstr "Endi siz uni umumlashtirishingiz yoki savollar berishingiz mumkin."
+
+msgid "Что это означает в простых терминах?"
+msgstr "Oddiyroq qilib aytganda, bu nimani anglatadi?"
+
+msgid "Приведите пример этого"
+msgstr "Bunga misol keltiring"
+
+msgid "Searching..."
+msgstr "Izlash..."
+
+msgid "Почему это важно?"
+msgstr "Bu nima uchun muhim?"
+
+msgid "Суммаризация статьи"
+msgstr "Maqolani umumlashtirish"
+
+msgid "Полученное резюме:"
+msgstr "Olingan rezyume:"
+
+msgid "Введите вопрос или выделите текст и нажмите 'Получить ответ."
+msgstr "Savol kiriting yoki matnni belgilang va "Javob olish" tugmasini bosing."
+
+msgid "Суммирование..."
+msgstr "Umumlashtirish..."
+
+msgid "Загрузить другую статью"
+msgstr "Boshqa maqola yuklash"
+
+#: papers/forms.py:14
+msgid "Задайте вопрос по статье:"
+msgstr "Maqola bo‘yicha savol bering:"
+
+#: papers/forms.py:15
+msgid "Введите ваш вопрос здесь..."
+msgstr "Savolingizni bu yerga kiriting..."
+
+#: papers/templates/base.html:7
+msgid "Статья обработан успешно!"
+msgstr "Maqola muvaffaqiyatli qayta ishlandi!"
+
+#: papers/templates/base.html:73
+msgid "Язык:"
+msgstr "Til:"
+
+#: papers/templates/papers/processing_status.html:4
+#, fuzzy
+msgid "Обработка статьи..."
+msgstr "Arxiv maqolasini qayta ishlash"
+
+#: papers/templates/papers/processing_status.html:8
+#: papers/templates/papers/upload_success.html:8
+msgid "Обработка статьи Arxiv"
+msgstr "Arxiv maqolasini qayta ishlash"
+
+#: papers/templates/papers/processing_status.html:12
+msgid "Идет обработка, пожалуйста, подождите..."
+msgstr "Qayta ishlash jarayoni davom etmoqda, iltimos, kuting..."
+
+#: papers/templates/papers/processing_status.html:16
+msgid "Этапы обработки:"
+msgstr "Qayta ishlash bosqichlari:"
+
+#: papers/templates/papers/processing_status.html:18
+msgid "Поиск статьи на Arxiv и загрузка PDF..."
+msgstr "Arxivda maqola qidirilmoqda va PDF yuklanmoqda..."
+
+#: papers/templates/papers/processing_status.html:19
+msgid "Извлечение текста из PDF..."
+msgstr "PDF'dan matn ajratilmoqda..."
+
+#: papers/templates/papers/processing_status.html:20
+#: papers/templates/papers/upload_success.html:89
+msgid "Генерация резюме..."
+msgstr "Xulosa yaratilmoqda..."
+
+#: papers/templates/papers/processing_status.html:21
+msgid "Обработка завершена. Перенаправление..."
+msgstr "Qayta ishlash tugallandi. Yo‘naltirilmoqda..."
+
+#: papers/templates/papers/upload.html:4 papers/templates/papers/upload.html:99
+msgid "Обработать статью"
+msgstr "Maqolaini qayta ishlash"
+
+msgid "Обработать и суммировать"
+msgstr "Qayta ishlash va umumlashtirish"
+
+msgid "Вид суммаризации"
+msgstr "Umumlashtirish turi"
+
+msgid "Короткий"
+msgstr "Qisqa"
+
+msgid "Стандартный"
+msgstr "Standart"
+
+msgid "Подробный"
+msgstr "Batafsil"
+
+#: papers/templates/papers/upload.html:29
+msgid "Поиск статьи..."
+msgstr "Maqola izlanmoqda..."
+
+#: papers/templates/papers/upload.html:44
+msgid "Название:"
+msgstr "Maqola sarlavhasi:"
+
+#: papers/templates/papers/upload.html:46
+msgid "Авторы:"
+msgstr "Mualliflar:"
+
+msgid "Репозиторий"
+msgstr "Repozitoriy"
+
+msgid "Результаты поиска"
+msgstr "Qidiruv natijalari"
+
+msgid "Поиск по запросу:"
+msgstr "So‘rov bo‘yicha qidirish:"
+
+msgid "Аннотация:"
+msgstr "Annotatsiya:"
+
+msgid "Using English for search is the best practice"
+msgstr "Qidiruv uchun ingliz tilidan foydalanish eng yaxshi amaliyotdir"
+
+#: papers/templates/papers/upload.html:51
+msgid "Не удалось найти название статьи."
+msgstr "Maqola sarlavhasi topilmadi."
+
+#: papers/templates/papers/upload.html:57
+msgid "Ошибка при поиске статьи. Проверьте ID."
+msgstr "Maqola qidirishda xato yuz berdi. ID’ni tekshiring."
+
+#: papers/templates/papers/upload.html:76
+msgid "Обработка..."
+msgstr "Qayta ishlash"
+
+#: papers/templates/papers/upload.html:116
+msgid "Обработать Arxiv ID"
+msgstr "Arxiv ID’ni qayta ishlash"
+
+#: papers/templates/papers/upload_success.html:4
+msgid "Обработка статьи"
+msgstr "Maqolani qayta ishlash"
+
+#: papers/templates/papers/upload_success.html:13
+msgid "Статья загружена из кэша!"
+msgstr "Maqola keshdan yuklandi!"
+
+msgid "Суммировать"
+msgstr "Qayta ishlash"
+
+#: papers/templates/papers/upload_success.html:15
+msgid "Статья обработана успешно!"
+msgstr "Maqola muvaffaqiyatli qayta ishlandi!"
+
+#: papers/templates/papers/upload_success.html:19
+msgid "Название статьи:"
+msgstr "Maqola sarlavhasi:"
+
+#: papers/templates/papers/upload_success.html:22
+msgid "Теперь вы можете получить резюме или задать вопросы."
+msgstr "Endi siz xulosa olishingiz yoki savollar berishingiz mumkin."
+
+#: papers/templates/papers/upload_success.html:28
+msgid "Резюме статьи"
+msgstr "Maqola xulosasi"
+
+#: papers/templates/papers/upload_success.html:29
+msgid "Получите краткое изложение основных положений статьи."
+msgstr "Maqolaning asosiy qoidalari haqida qisqa ma'lumot oling."
+
+#: papers/templates/papers/upload_success.html:36
+msgid "Получить резюме"
+msgstr "Xulosa olish"
+
+#: papers/templates/papers/upload_success.html:41
+msgid "Сгенерированное резюме:"
+msgstr "Yaratilgan xulosa:"
+
+#: papers/templates/papers/upload_success.html:46
+msgid "Нажмите 'Получить резюме', чтобы сгенерировать краткое изложение."
+msgstr "Qisqa ma'lumotni yaratish uchun 'Xulosa olish' tugmasini bosing."
+
+#: papers/templates/papers/upload_success.html:54
+msgid "Задать вопрос"
+msgstr "Savol berish"
+
+#: papers/templates/papers/upload_success.html:55
+msgid "Задайте вопрос на основе содержимого статьи или выделите текст в резюме."
+msgstr "Maqola mazmuni asosida savol bering yoki rezyumeda matnni ajratib ko‘rsating."
+
+#: papers/templates/papers/upload_success.html:63
+msgid "Получить ответ"
+msgstr "Javob olish"
+
+#: papers/templates/papers/upload_success.html:68
+msgid "Ответ:"
+msgstr "Javob:"
+
+#: papers/templates/papers/upload_success.html:73
+msgid "Введите вопрос и нажмите 'Получить ответ'."
+msgstr "Savol kiriting va 'Javob olish' tugmasini bosing."
+
+#: papers/templates/papers/upload_success.html:81
+msgid "Обработать другую статью"
+msgstr "Boshqa maqolani qayta ishlash"
+
+#: papers/templates/papers/upload_success.html:96
+msgid "Поиск ответа..."
+msgstr "Javob izlanmoqda..."
+
+msgid "Получение ответа..."
+msgstr "Javob olish..."
+
+#: papers/views.py:32
+msgid "Неизвестное название"
+msgstr "Noma'lum sarlavha"
+
+#: papers/views.py:42
+msgid "Неизвестные авторы"
+msgstr "Noma'lum mualliflar"
+
+#: papers/views.py:65
+msgid "ID Arxiv не предоставлен."
+msgstr "Arxiv ID taqdim etilmadi."
+
+#: papers/views.py:71
+msgid "Не удалось найти статью с таким ID."
+msgstr "Bunday ID bilan maqola topilmadi."
+
+#: papers/views.py:124 papers/views.py:152 papers/views.py:232
+#: papers/views.py:234
+msgid "Неизвестная статья"
+msgstr "Noma'lum maqola"
+
+#: papers/views.py:167
+#, python-brace-format
+msgid "Не удалось загрузить PDF с Arxiv ID: {arxiv_id}. Проверьте ID или соединение."
+msgstr "Arxiv ID: {arxiv_id} bilan PDF yuklab bo‘lmadi. ID’ni yoki ulanishni tekshiring."
+
+#: papers/views.py:174
+msgid "Не удалось извлечь текст из PDF. Пожалуйста, проверьте файл или его формат."
+msgstr "PDF'dan matnni ajratib bo‘lmadi. Iltimos, faylni yoki uning formatini tekshiring."
+
+#: papers/views.py:202
+msgid "Произошла неизвестная ошибка при обработке статьи."
+msgstr "Maqolani qayta ishlashda noma'lum xato yuz berdi."
+
+#: papers/views.py:277
+msgid "Не удалось найти текст или вопрос для ответа."
+msgstr "Javob berish uchun matn yoki savol topilmadi."
+
+msgid "Ошибка извлечения текста из PDF: {error}"
+msgstr "PDF'dan matn ajratib olishda xato: {error}"
+
+msgid "Summary not available in this language."
+msgstr "Ushbu tilda qisqacha ma'lumot mavjud emas."
+
+msgid "Не удалось загрузить оригинальный PDF: {error}"
+msgstr "Asl PDF ni yuklab olish amalga oshmadi: {error}"
+
+msgid "Выберите вид суммаризации:"
+msgstr "Umumlashtirish turini tanlang"
+
+msgid "Title"
+msgstr "Sarlavha"
+
+msgid "Authors"
+msgstr "Mualliflar"
+
+msgid "Generated Summary"
+msgstr "Yaratilgan qisqacha ma'lumot"
+
+msgid "No Title Available"
+msgstr "Sarlavha mavjud emas"
+
+msgid "No Authors Available"
+msgstr "Mualliflar mavjud emas"
+
+msgid "Original Paper URL: "
+msgstr "Asl maqola URL manzili: "
+
+msgid "Информация о статье"
+msgstr "Maqola haqida ma'lumot"
+
+msgid "Заголовок:"
+msgstr "Sarlavha:"
+
+msgid "Недоступно"
+msgstr "Mavjud emas"
+
+msgid "Оригинальный URL статьи:"
+msgstr "Asl maqola URL manzili:"
+
+msgid "Загрузки"
+msgstr "Yuklamalar"
+
+msgid "Скачать резюме (PDF)"
+msgstr "Qisqacha ma'lumotni yuklab olish (PDF)"
+
+msgid "Скачать оригинал статьи (PDF)"
+msgstr "Asl maqolani yuklab olish (PDF)"
+

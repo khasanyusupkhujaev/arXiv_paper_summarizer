@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Обработать статью" %}{% endblock %}
+
+{% block extra_head %}
+    <style>
+        .id-input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.125rem;
+            border: 2px solid #4B5EAA; /* Visible border */
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background-color: #ffffff; /* Ensure background is visible */
+        }
+
+        .id-input:focus {
+            border-color: #1E3A8A;
+            box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.2);
+            outline: none;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-3xl font-bold text-center mb-6 text-indigo-700">{% trans "Обработать статью" %}</h1>
+    {% if error_message %}
+        <div class="mb-6 bg-red-50 border-red-500 text-red-800 border-l-4 p-4 rounded-md" role="alert">
+            <p>{{ error_message }}</p>
+            {% if error_message|slice:":17" == "No PDF or abstract" %}
+                <p>{% trans "This DOI does not provide a publicly accessible PDF or abstract. Try visiting the publisher's page or checking an alternative repository." %}</p>
+            {% endif %}
+        </div>
+    {% endif %}
+    <div class="p-6 bg-white rounded-xl shadow-md">
+        <form method="post" action="{% url 'upload_paper' %}" class="space-y-6">
+            {% csrf_token %}
+            <div>
+                <label for="{{ form.repository.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "Репозиторий" %}</label>
+                {{ form.repository }}
+                {% if form.repository.errors %}
+                    <p class="text-red-500 text-sm">{{ form.repository.errors }}</p>
+                {% endif %}
+            </div>
+            <div>
+                <label for="{{ form.arxiv_id.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "ID статьи" %}</label>
+                <input type="text" name="arxiv_id" id="{{ form.arxiv_id.id_for_label }}" class="id-input w-full" placeholder="{% trans 'Введите ID статьи (например, 2506.08872)' %}" value="{{ form.arxiv_id.value|default:'' }}">
+                {% if form.arxiv_id.errors %}
+                    <p class="text-red-500 text-sm">{{ form.arxiv_id.errors }}</p>
+                {% endif %}
+            </div>
+            <div>
+                <label for="{{ form.summary_type.id_for_label }}" class="block text-sm font-medium text-gray-700">{% trans "Вид суммаризации" %}</label>
+                {{ form.summary_type }}
+                {% if form.summary_type.errors %}
+                    <p class="text-red-500 text-sm">{{ form.summary_type.errors }}</p>
+                {% endif %}
+            </div>
+            <button type="submit" class="button button-primary w-full">{% trans "Обработать и суммировать" %}</button>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const repositorySelect = document.getElementById('repository-select');
+    const idLabel = document.getElementById('id-label');
+    const idInput = document.querySelector('input[name="arxiv_id"]');
+    const idHelp = document.getElementById('id-help');
+
+    function updateLabelAndPlaceholder() {
+        const repo = repositorySelect.value;
+        if (repo === 'others') {
+            idLabel.textContent = '{% trans "DOI статьи" %}';
+            idInput.placeholder = '{% trans "Введите DOI (например, 10.1101/2025.05.09.25327334)" %}';
+        } else {
+            idLabel.textContent = '{% trans "ID статьи" %}';
+            idInput.placeholder = '{% trans "Введите ID статьи (например, 2506.08872)" %}';
+        }
+    }
+
+    updateLabelAndPlaceholder();
+    repositorySelect.addEventListener('change', updateLabelAndPlaceholder);
+});
+</script>
+{% endblock %}

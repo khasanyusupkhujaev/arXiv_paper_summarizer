@@ -1,0 +1,251 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Успешная загрузка и суммаризация" %}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-3xl font-bold text-center mb-6 text-indigo-700">{% trans "Обработка статьи" %}</h1>
+
+    <div class="mb-6 {% if is_cached_paper %}bg-green-100 border-green-500 text-green-800{% else %}bg-blue-100 border-blue-500 text-blue-800 text-center{% endif %} border-l-4 p-4 rounded-md">
+        <p class="font-bold">
+            {% if is_cached_paper %}
+                {% trans "Статья загружена из кэша!" %}
+            {% else %}
+                {% trans "Статья обработана успешно!" %}
+            {% endif %}
+        </p>
+        <p>{% trans "Вы загрузили статью:" %} <span class="font-semibold">{{ paper_filename }}</span></p>
+        <p>{% trans "Теперь вы можете суммировать её или задать вопросы." %}</p>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <h2 class="text-2xl font-bold mb-2">{% trans "Информация о статье" %}</h2>
+        {% if article_title %}
+            <p><strong class="text-indigo-700">{% trans "Заголовок:" %}</strong> {{ article_title }}</p>
+        {% else %}
+            <p><strong class="text-indigo-700">{% trans "Заголовок:" %}</strong> {% trans "Недоступно" %}</p>
+        {% endif %}
+        {% if article_authors %}
+            <p><strong class="text-indigo-700">{% trans "Авторы:" %}</strong> {{ article_authors }}</p>
+        {% else %}
+            <p><strong class="text-indigo-700">{% trans "Авторы:" %}</strong> {% trans "Недоступно" %}</p>
+        {% endif %}
+        {% if article_url %}
+            <p><strong class="text-indigo-700">{% trans "Оригинальный URL статьи:" %}</strong> <a href="{{ article_url }}" target="_blank" class="text-blue-600 hover:underline">{{ article_url }}</a></p>
+        {% else %}
+            <p><strong class="text-indigo-700">{% trans "Оригинальный URL статьи:" %}</strong> {% trans "Недоступно" %}</p>
+        {% endif %}
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 bg-white rounded-xl shadow-md">
+            <h2 class="section-title">{% trans "Суммаризация статьи" %}</h2>
+            <br>
+            <form method="post" action="{% url 'upload_success' pk=paper_pk %}" id="summarize-form">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <select name="summary_type" id="summary_type" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 form-select">
+                        {% for value, label in summary_types %}
+                            <option value="{{ value }}" {% if summary_type == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <input type="hidden" name="summarize" value="true">
+                <input type="hidden" name="language" value="{{ current_language }}">
+                <button type="submit" class="button button-primary">
+                    <span id="summarize-spinner" class="hidden spinner"></span>
+                    <span id="summarize-button-text">{% trans "Суммировать" %}</span>
+                </button>
+            </form>
+
+            <div class="mt-6">
+                <h3 class="font-semibold text-lg mb-2">{% trans "Полученное резюме:" %}</h3>
+                <div id="summary-output" class="response-box whitespace-pre-line bg-yellow-50" style="user-select: text;">
+                    {% if summary %}
+                        {{ summary|linebreaks }}
+                    {% else %}
+                        <p class="text-gray-500">{% trans "Выберите тип summary и нажмите 'Суммировать', чтобы получить краткое изложение." %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="p-6 bg-white rounded-xl shadow-md">
+            <h2 class="section-title">{% trans "Задать вопрос" %}</h2>
+            <p class="mb-4 text-gray-700">{% trans "Задайте вопрос на основе содержимого статьи или выделите текст в резюме." %}</p>
+            <form method="post" action="{% url 'upload_success' pk=paper_pk %}" id="question-form">
+                {% csrf_token %}
+                {{ question_form.as_p }}
+                <input type="hidden" name="ask_question" value="true">
+                <input type="hidden" name="language" value="{{ current_language }}">
+                <input type="hidden" name="summary_type" value="{{ summary_type }}">
+                <button type="submit" class="button button-primary mt-4">
+                    <span id="answer-spinner" class="hidden spinner"></span>
+                    <span id="answer-button-text">{% trans "Получить ответ" %}</span>
+                </button>
+            </form>
+
+            <div class="mt-6">
+                <h3 class="font-semibold text-lg mb-2">{% trans "Ответ:" %}</h3>
+                <div id="answer-output" class="response-box whitespace-pre-line">
+                    {% if answer %}
+                        {{ answer|linebreaks }}
+                    {% else %}
+                        <p class="text-gray-500">{% trans "Введите вопрос или выделите текст и нажмите 'Получить ответ'." %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-8 space-y-4">
+        <h2 class="text-2xl font-bold mb-4">{% trans "Загрузки" %}</h2>
+        <a href="{% url 'download_summary_pdf' pk=paper_pk %}?summary_type={{ summary_type }}" class="button button-secondary">
+            {% trans "Скачать резюме (PDF)" %}
+        </a>
+        {% if paper_filename|slice:":8" != "crossref" %}
+            <a href="{% url 'download_original_pdf' arxiv_id=paper_filename %}" target="_blank" class="button button-secondary">
+                {% trans "Скачать оригинал статьи (PDF)" %}
+            </a>
+        {% else %}
+            <a href="{{ article_url }}" target="_blank" class="button button-secondary">
+                {% trans "Посетить страницу издателя" %}
+            </a>
+        {% endif %}
+        <a href="{% url 'upload_paper' %}" class="button button-primary mt-4">{% trans "Загрузить другую статью" %}</a>
+    </div>
+
+    <!-- Pop-up for highlighted text questions -->
+    <div id="highlight-popup" class="hidden fixed bg-white/80 backdrop-blur-sm border border-gray-200 shadow-xl p-4 rounded-lg z-50" style="width: 320px;">
+        <form id="highlight-question-form" method="post" action="{% url 'paper_summary' arxiv_id=paper_filename %}">
+            {% csrf_token %}
+            <input type="hidden" name="highlighted_question" id="highlight-question-input">
+            <input type="hidden" name="highlighted_text" id="highlight-text-input">
+            <input type="hidden" name="language" value="{{ current_language }}">
+            <input type="hidden" name="summary_type" value="{{ summary_type }}">
+            <p class="text-sm font-semibold text-gray-800 mb-2">{% trans "Ask about highlighted text:" %}</p>
+            <input type="text" id="custom-question" class="w-full border border-gray-300 rounded-md p-2 text-sm focus:ring-indigo-500 focus:border-indigo-500" placeholder="{% trans 'Enter your question' %}">
+            <p class="text-xs text-gray-600 mt-2 mb-1">{% trans "Or choose a predefined question:" %}</p>
+            <button type="button" class="predefined-question w-full text-sm py-1.5 px-2 mb-1 bg-indigo-100 text-indigo-700 rounded-md hover:bg-indigo-200 transition">
+                {% trans "What does this mean in simpler terms?" %}
+            </button>
+            <button type="button" class="predefined-question w-full text-sm py-1.5 px-2 mb-1 bg-indigo-100 text-indigo-700 rounded-md hover:bg-indigo-200 transition">
+                {% trans "Give me an example of this" %}
+            </button>
+            <button type="button" class="predefined-question w-full text-sm py-1.5 px-2 mb-1 bg-indigo-100 text-indigo-700 rounded-md hover:bg-indigo-200 transition">
+                {% trans "Why is this important?" %}
+            </button>
+            <div class="flex justify-end mt-3 space-x-2">
+                <button type="button" id="cancel-highlight" class="text-gray-500 text-sm hover:text-gray-700">{% trans "Cancel" %}</button>
+                <button type="submit" class="bg-indigo-600 text-white text-sm py-1 px-3 rounded-md hover:bg-indigo-700 transition">{% trans "Ask" %}</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+.highlighted {
+    background-color: yellow;
+}
+#highlight-popup {
+    position: absolute;
+}
+.response-box {
+    color: #333333; /* Darker text color for better contrast */
+    background-color: #fff3cd; /* Slightly adjusted yellow background */
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+#summary-output p,
+#answer-output p {
+    color: #333333; /* Ensure paragraphs use the same dark color */
+}
+
+.text-gray-500 {
+    color: #4b5563; /* Darker gray for secondary text */
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const summaryOutput = document.getElementById('summary-output');
+    const popup = document.getElementById('highlight-popup');
+    const questionInput = document.getElementById('highlight-question-input');
+    const textInput = document.getElementById('highlight-text-input');
+    const customQuestion = document.getElementById('custom-question');
+    const cancelButton = document.getElementById('cancel-highlight');
+
+    // Enable text highlighting
+    summaryOutput.addEventListener('mouseup', function(e) {
+        const selection = window.getSelection();
+        const selectedText = selection.toString().trim();
+        if (selectedText) {
+            // Highlight selected text
+            const range = selection.getRangeAt(0);
+            const span = document.createElement('span');
+            span.className = 'highlighted';
+            range.surroundContents(span);
+
+            // Position popup above selection
+            const rect = range.getBoundingClientRect();
+            popup.style.top = (rect.top + window.scrollY - popup.offsetHeight - 10) + 'px';
+            popup.style.left = Math.max(rect.left + window.scrollX, 10) + 'px'; // Prevent overflow
+            popup.classList.remove('hidden');
+
+            // Store selected text
+            textInput.value = selectedText;
+            questionInput.value = '';
+            customQuestion.value = '';
+        }
+    });
+
+    // Handle predefined questions
+    document.querySelectorAll('.predefined-question').forEach(button => {
+        button.addEventListener('click', function() {
+            const question = this.textContent.trim();
+            questionInput.value = question;
+            customQuestion.value = question;
+            document.getElementById('highlight-question-form').submit();
+        });
+    });
+
+    // Handle custom question input
+    customQuestion.addEventListener('input', function() {
+        questionInput.value = this.value;
+    });
+
+    // Cancel popup
+    cancelButton.addEventListener('click', function() {
+        popup.classList.add('hidden');
+        // Remove highlight
+        const highlighted = document.querySelector('.highlighted');
+        if (highlighted) {
+            const parent = highlighted.parentNode;
+            parent.replaceChild(document.createTextNode(highlighted.textContent), highlighted);
+            parent.normalize();
+        }
+    });
+
+    // Handle form submission
+    document.getElementById('highlight-question-form').addEventListener('submit', function() {
+        popup.classList.add('hidden');
+    });
+
+    // Existing form handlers
+    document.getElementById('summarize-form').addEventListener('submit', function() {
+        document.getElementById('summarize-spinner').classList.remove('hidden');
+        document.getElementById('summarize-button-text').innerText = '{% trans "Суммирование..." %}';
+        this.querySelector('button[type="submit"]').setAttribute('disabled', 'disabled');
+    });
+
+    document.getElementById('question-form').addEventListener('submit', function() {
+        document.getElementById('answer-spinner').classList.remove('hidden');
+        document.getElementById('answer-button-text').innerText = '{% trans "Получение ответа..." %}';
+        this.querySelector('button[type="submit"]').setAttribute('disabled', 'disabled');
+    });
+});
+</script>
+{% endblock %}

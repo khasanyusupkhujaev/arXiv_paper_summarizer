@@ -1,0 +1,322 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-12 09:13+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: papers/forms.py:6
+msgid "Введите ID статьи Arxiv (например, 2506.08872)"
+msgstr "Введите ID статьи Arxiv (например, 2506.08872)"
+
+#: papers/forms.py:9
+msgid "Например, 2506.08872"
+msgstr "Например, 2506.08872"
+
+msgid "Find an Article"
+msgstr "Найти статью"
+
+msgid "Describe the article you want"
+msgstr "Опишите статью, которую хотите найти"
+
+msgid "E.g., Articles about Artificial General Intelligence (AGI)"
+msgstr "Например, статьи об общем искуственном интеллекте (ИОИ)"
+
+msgid "Search Instructions"
+msgstr "Инструкции поиска"
+
+msgid "Describe the topic in detail for accurate results. E.g., instead of 'Reinforcement Learning', write 'Uncertainty Prioritized Experience Replay for dynamic environments'."
+msgstr "Опишите тему подробно для получения точных результатов. Например, вместо 'Reinforcement Learning' напишите 'Uncertainty Prioritized Experience Replay for dynamic environments'."
+
+msgid "Use specific keywords that reflect the problem, methodology, or context of the article you’re searching for."
+msgstr "Используйте конкретные ключевые слова, которые отражают проблему, методологию или контекст статьи, которую вы ищете."
+
+msgid "If you want to limit the search to a category (e.g., computer science), include it in the description."
+msgstr "Если вы хотите ограничить поиск категорией (например, информатикой), включите его в описание."
+
+msgid "Use clear and specific terms, avoiding vague words, to improve result relevance."
+msgstr "Используйте четкие и конкретные термины, избегая двусмысленных слов, чтобы улучшить релевантность результатов."
+
+msgid "Using English for search is the best practice"
+msgstr "Использование английского языка для поиска - лучшая практика."
+
+#: papers/forms.py:14
+msgid "Задайте вопрос по статье:"
+msgstr "Задайте вопрос по статье:"
+
+#: papers/forms.py:15
+msgid "Введите ваш вопрос здесь..."
+msgstr "Введите ваш вопрос здесь..."
+
+#: papers/templates/base.html:7
+msgid "Arxiv Paper Summarizer"
+msgstr "Суммаризатор статей Arxiv"
+
+#: papers/templates/base.html:73
+msgid "Язык:"
+msgstr "Язык:"
+
+msgid "Суммировать"
+msgstr "Суммировать"
+
+msgid "Получение ответа..."
+msgstr "Получение ответа..."
+
+msgid "Загрузить другую статью"
+msgstr "Загрузить другую статью"
+
+#: papers/templates/papers/processing_status.html:4
+#, fuzzy
+msgid "Обработка статьи"
+msgstr "Обработка статьи"
+
+#: papers/templates/papers/processing_status.html:16
+msgid "Этапы обработки:"
+msgstr "Этапы обработки:"
+
+msgid "Репозиторий"
+msgstr "Репозиторий"
+
+msgid "ID статьи"
+msgstr "ID статьи"
+
+msgid "Вид суммаризации"
+msgstr "Вид суммаризации"
+
+msgid "Полученное резюме:"
+msgstr "Полученное резюме:"
+
+msgid "Суммаризация статьи"
+msgstr "Суммаризация статьи"
+
+msgid "Короткий"
+msgstr "Короткий"
+
+msgid "Стандартный"
+msgstr "Стандартный"
+
+msgid "Подробный"
+msgstr "Подробный"
+
+#: papers/templates/papers/processing_status.html:18
+msgid "Поиск статьи на Arxiv и загрузка PDF..."
+msgstr "Поиск статьи на Arxiv и загрузка PDF..."
+
+#: papers/templates/papers/processing_status.html:19
+msgid "Извлечение текста из PDF..."
+msgstr "Извлечение текста из PDF..."
+
+msgid "Вы загрузили статью:"
+msgstr "Вы загрузили статью:"
+
+#: papers/templates/papers/processing_status.html:20
+#: papers/templates/papers/upload_success.html:89
+msgid "Генерация резюме..."
+msgstr "Генерация резюме..."
+
+#: papers/templates/papers/processing_status.html:21
+msgid "Обработка завершена. Перенаправление..."
+msgstr "Обработка завершена. Перенаправление..."
+
+#: papers/templates/papers/upload.html:4 papers/templates/papers/upload.html:99
+msgid "Обработать статью"
+msgstr "Обработать статью"
+
+msgid "Обработать и суммировать"
+msgstr "Обработать и суммировать"
+
+#: papers/templates/papers/upload.html:29
+msgid "Поиск статьи..."
+msgstr "Поиск ответа..."
+
+#: papers/templates/papers/upload.html:44
+msgid "Название:"
+msgstr "Название статьи:"
+
+#: papers/templates/papers/upload.html:46
+msgid "Авторы:"
+msgstr "Авторы:"
+
+#: papers/templates/papers/upload.html:51
+msgid "Не удалось найти название статьи."
+msgstr "Не удалось найти название статьи."
+
+#: papers/templates/papers/upload.html:57
+msgid "Ошибка при поиске статьи. Проверьте ID."
+msgstr "Ошибка при поиске статьи. Проверьте ID."
+
+#: papers/templates/papers/upload.html:76
+msgid "Обработка..."
+msgstr "Обработка..."
+
+#: papers/templates/papers/upload.html:116
+msgid "Обработать Arxiv ID"
+msgstr "Обработать Arxiv ID"
+
+#: papers/templates/papers/upload_success.html:13
+msgid "Статья загружена из кэша!"
+msgstr "Статья загружена из кэша!"
+
+#: papers/templates/papers/upload_success.html:15
+msgid "Статья обработана успешно!"
+msgstr "Статья обработана успешно!"
+
+#: papers/templates/papers/upload_success.html:19
+msgid "Название статьи:"
+msgstr "Название статьи:"
+
+msgid "Searching..."
+msgstr "Поиск..."
+
+
+
+#: papers/templates/papers/upload_success.html:22
+msgid "Теперь вы можете суммировать его или задать вопросы."
+msgstr "Теперь вы можете суммировать его или задать вопросы."
+
+#: papers/templates/papers/upload_success.html:28
+msgid "Резюме статьи"
+msgstr "Резюме статьи"
+
+#: papers/templates/papers/upload_success.html:29
+msgid "Получите краткое изложение основных положений статьи."
+msgstr "Получите краткое изложение основных положений статьи."
+
+#: papers/templates/papers/upload_success.html:36
+msgid "Получить резюме"
+msgstr "Получить резюме"
+
+#: papers/templates/papers/upload_success.html:41
+msgid "Сгенерированное резюме:"
+msgstr "Сгенерированное резюме:"
+
+#: papers/templates/papers/upload_success.html:46
+msgid "Нажмите 'Получить резюме', чтобы сгенерировать краткое изложение."
+msgstr "Нажмите 'Получить резюме', чтобы сгенерировать краткое изложение."
+
+#: papers/templates/papers/upload_success.html:54
+msgid "Задать вопрос"
+msgstr "Задать вопрос"
+
+#: papers/templates/papers/upload_success.html:55
+msgid "Задайте вопрос на основе содержимого статьи."
+msgstr "Задайте вопрос на основе содержимого статьи."
+
+#: papers/templates/papers/upload_success.html:63
+msgid "Получить ответ"
+msgstr "Получить ответ"
+
+#: papers/templates/papers/upload_success.html:68
+msgid "Ответ:"
+msgstr "Ответ:"
+
+#: papers/templates/papers/upload_success.html:73
+msgid "Введите вопрос и нажмите 'Получить ответ'."
+msgstr "Введите вопрос и нажмите 'Получить ответ'."
+
+#: papers/templates/papers/upload_success.html:81
+msgid "Обработать другую статью"
+msgstr "Обработать другую статью"
+
+#: papers/templates/papers/upload_success.html:96
+msgid "Поиск ответа..."
+msgstr "Поиск ответа..."
+
+#: papers/views.py:32
+msgid "Неизвестное название"
+msgstr "Неизвестное название"
+
+#: papers/views.py:42
+msgid "Неизвестные авторы"
+msgstr "Неизвестные авторы"
+
+#: papers/views.py:65
+msgid "ID Arxiv не предоставлен."
+msgstr "ID Arxiv не предоставлен."
+
+#: papers/views.py:71
+msgid "Не удалось найти статью с таким ID."
+msgstr "Не удалось найти статью с таким ID."
+
+#: papers/views.py:124 papers/views.py:152 papers/views.py:232
+#: papers/views.py:234
+msgid "Неизвестная статья"
+msgstr "Неизвестная статья"
+
+#: papers/views.py:167
+#, python-brace-format
+msgid "Не удалось загрузить PDF с Arxiv ID: {arxiv_id}. Проверьте ID или соединение."
+msgstr "Не удалось загрузить PDF с Arxiv ID: {arxiv_id}. Проверьте ID или соединение."
+
+#: papers/views.py:174
+msgid "Не удалось извлечь текст из PDF. Пожалуйста, проверьте статью или его формат."
+msgstr "Не удалось извлечь текст из PDF. Пожалуйста, проверьте статью или его формат."
+
+#: papers/views.py:202
+msgid "Произошла неизвестная ошибка при обработке статьи."
+msgstr "Произошла неизвестная ошибка при обработке статьи."
+
+#: papers/views.py:277
+msgid "Не удалось найти текст или вопрос для ответа."
+msgstr "Не удалось найти текст или вопрос для ответа."
+
+msgid "Ошибка извлечения текста из PDF: {error}"
+msgstr "Ошибка извлечения текста из PDF: {error}"
+
+msgid "Summary not available in this language."
+msgstr "Summary not available in this language."
+
+msgid "Не удалось загрузить оригинальный PDF: {error}"
+msgstr "Не удалось загрузить оригинальный PDF: {error}"
+
+msgid "Title"
+msgstr "Заголовок"
+
+msgid "Authors"
+msgstr "Авторы"
+
+msgid "Generated Summary"
+msgstr "Сгенерированное резюме"
+
+msgid "No Title Available"
+msgstr "Заголовок недоступен"
+
+msgid "No Authors Available"
+msgstr "Авторы недоступны"
+
+msgid "Original Paper URL: "
+msgstr "URL оригинальной статьи:"
+
+msgid "Информация о статье"
+msgstr "Информация о статье"
+
+msgid "Заголовок:"
+msgstr "Заголовок:"
+
+msgid "Недоступно"
+msgstr "Недоступно"
+
+msgid "Оригинальный URL статьи:"
+msgstr "Оригинальный URL статьи:"
+
+msgid "Загрузки"
+msgstr "Загрузки"
+
+msgid "Скачать резюме (PDF)"
+msgstr "Скачать резюме (PDF)"
+
+msgid "Скачать оригинал статьи (PDF)"
+msgstr "Скачать оригинал статьи (PDF)"
